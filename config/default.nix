@@ -40,7 +40,10 @@
     };
     visuals = {
       nvim-web-devicons.enable = true;
-      nvim-cursorline.setupOpts.cursorword.enable = true;
+      nvim-cursorline = {
+        enable = true;
+        setupOpts.cursorword.enable = true;
+      };
       cinnamon-nvim = {
         enable = true;
         setupOpts = {
