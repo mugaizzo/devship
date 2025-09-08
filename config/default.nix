@@ -38,7 +38,13 @@
         theme = "dracula";
       };
     };
-    visuals = {cinnamon-nvim.enable = true;};
+    visuals = {
+      cinnamon-nvim = {
+        enable = true;
+        setupOpts.keymaps.basic = true;
+      };
+    };
+
     ui.noice.enable = true;
 
     telescope = {
