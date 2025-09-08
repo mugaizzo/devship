@@ -41,7 +41,10 @@
     visuals = {
       cinnamon-nvim = {
         enable = true;
-        setupOpts.keymaps.basic = true;
+        setupOpts = {
+          keymaps.basic = true;
+          options.mode = "cursor";
+        };
       };
     };
 
