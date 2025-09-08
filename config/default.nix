@@ -26,9 +26,11 @@
       providers.xclip.enable = true;
     };
 
-    theme.enable = true;
-    theme.name = "catppuccin";
-    theme.style = "mocha";
+    theme = {
+      enable = true;
+      name = "catppuccin";
+      style = "mocha";
+    };
 
     statusline = {
       lualine = {

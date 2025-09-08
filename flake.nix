@@ -16,7 +16,7 @@
     pkgs = import nixpkgs {inherit system;};
     myNeovim = nvf.lib.neovimConfiguration {
       inherit pkgs;
-      modules = [./nvf/default.nix];
+      modules = [./config/default.nix];
     };
     mugaSystemTools = pkgs.symlinkJoin {
       name = "mugaSystemTools";
