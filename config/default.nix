@@ -39,6 +39,7 @@
       };
     };
     visuals = {
+      nvim-web-devicons.enable = true;
       cinnamon-nvim = {
         enable = true;
         setupOpts = {
