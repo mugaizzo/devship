@@ -1,8 +1,11 @@
 {
   pkgs,
   lib,
+  inputs,
   ...
-}: {
+}: let
+  inherit (inputs.nvf.lib.nvim.dag) entryAnywhere;
+in {
   vim = {
     dashboard.alpha = {
       enable = true;
@@ -83,6 +86,29 @@
       };
     };
 
+    startPlugins = [pkgs.vimPlugins.CopilotChat-nvim];
+
+    vimluaConfigRC.copilot-chat = entryAnywhere ''
+         require("CopilotChat").setup {
+           -- Your CopilotChat configuration here
+           window = {
+            -- layout = "float",
+            -- border = "rounded",
+      	  title = "🤖 AI Assistant",
+      	  zindex = 100, -- Ensure window stays on top
+           },
+      headers = {
+      	user = "👤 You: ",
+      	assistant = "🤖 Copilot: ",
+      	tool = "🔧 Tool: ",
+      },
+      separator = "━━",
+      show_folds = false, -- Disable folding for cleaner look
+         }
+
+         -- Set up keymaps for CopilotChat
+         -- vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChat<CR>", { desc = "Open CopilotChat" })
+    '';
     lsp.null-ls = {
       enable = true;
 
@@ -157,9 +183,10 @@
       enable = true;
       setupOpts.open_for_directories = true;
     };
+
     additionalRuntimePaths = [
       # You can list more than one file here.
-      ./clipboard.lua
+      ./config
     ];
 
     keymaps = [

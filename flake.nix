@@ -11,12 +11,15 @@
     nixpkgs,
     nvf,
     ...
-  }: let
+  } @ inputs: let
     system = "x86_64-linux";
     pkgs = import nixpkgs {inherit system;};
     myNeovim = nvf.lib.neovimConfiguration {
       inherit pkgs;
-      modules = [./config/default.nix];
+      modules = [
+        {_module.args = {inherit inputs;};}
+        ./config/default.nix
+      ];
     };
     mugaSystemTools = pkgs.symlinkJoin {
       name = "mugaSystemTools";
