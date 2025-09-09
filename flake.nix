@@ -20,7 +20,14 @@
     };
     mugaSystemTools = pkgs.symlinkJoin {
       name = "mugaSystemTools";
-      paths = [pkgs.zellij myNeovim.neovim];
+      paths = with pkgs; [
+        zellij
+        yazi
+        lazygit
+        alejandra
+        statix
+        myNeovim.neovim
+      ];
     };
   in {
     # package output

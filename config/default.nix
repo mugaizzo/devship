@@ -38,22 +38,26 @@
         theme = "dracula";
       };
     };
+
     visuals = {
       nvim-web-devicons.enable = true;
       nvim-cursorline = {
         enable = true;
         setupOpts.cursorword.enable = true;
       };
-      cinnamon-nvim = {
-        enable = true;
-        setupOpts = {
-          keymaps.basic = true;
-          options.mode = "cursor";
-        };
-      };
+      # cinnamon-nvim = {
+      #   enable = true;
+      #   setupOpts = {
+      #     keymaps.basic = true;
+      #     options.mode = "cursor";
+      #   };
+      # };
     };
 
-    ui.noice.enable = true;
+    ui = {
+      noice.enable = true;
+      borders.plugins.which-key.enable = true;
+    };
 
     telescope = {
       enable = true;
@@ -114,6 +118,49 @@
       number = true;
       relativenumber = true;
     };
+
+    mini = {
+      pairs.enable = true;
+      surround.enable = true;
+      move.enable = true;
+      # ai.enable = true;
+      # hipatterns.enable = true;
+      # cursorword.enabble = true;
+    };
+
+    snippets.luasnip.enable = true;
+
+    autocomplete.nvim-cmp = {
+      enable = true;
+      sourcePlugins = ["luasnip" "cmp-luasnip" "which-key-nvim" "nvim-treesitter" "mini-surround" "none-ls-nvim" "telescope"];
+      sources = {
+        nvim_lsp = "[LSP]";
+        luasnip = "[LuaSnip]";
+        buffer = "[buffer]";
+      };
+    };
+
+    git.vim-fugitive.enable = true;
+
+    terminal.toggleterm.lazygit = {
+      enable = true;
+      package = pkgs.lazygit;
+      direction = "float";
+      mappings.open = "<leader>gg";
+    };
+
+    notify.nvim-notify = {
+      enable = true;
+      setupOpts.background_colour = "#000000";
+    };
+    utility.yazi-nvim = {
+      enable = true;
+      setupOpts.open_for_directories = true;
+    };
+    additionalRuntimePaths = [
+      # You can list more than one file here.
+      ./clipboard.lua
+    ];
 
     keymaps = [
       {
@@ -303,49 +350,6 @@
       #   action = "<cmd>LazyGit<cr>";
       #   desc = "Open Lazygit";
       # }
-    ];
-
-    mini = {
-      pairs.enable = true;
-      surround.enable = true;
-      move.enable = true;
-      # ai.enable = true;
-      # hipatterns.enable = true;
-      # cursorword.enabble = true;
-    };
-
-    snippets.luasnip.enable = true;
-
-    autocomplete.nvim-cmp = {
-      enable = true;
-      sourcePlugins = ["luasnip" "cmp-luasnip" "which-key-nvim" "nvim-treesitter" "mini-surround"];
-      sources = {
-        nvim_lsp = "[LSP]";
-        luasnip = "[LuaSnip]";
-        buffer = "[buffer]";
-      };
-    };
-
-    git.vim-fugitive.enable = true;
-
-    terminal.toggleterm.lazygit = {
-      enable = true;
-      package = pkgs.lazygit;
-      direction = "float";
-      mappings.open = "<leader>lg";
-    };
-
-    notify.nvim-notify = {
-      enable = true;
-      setupOpts.background_colour = "#000000";
-    };
-    utility.yazi-nvim = {
-      enable = true;
-      setupOpts.open_for_directories = true;
-    };
-    additionalRuntimePaths = [
-      # You can list more than one file here.
-      ./clipboard.lua
     ];
   };
 }
