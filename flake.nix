@@ -17,7 +17,7 @@
     myNeovim = nvf.lib.neovimConfiguration {
       inherit pkgs;
       modules = [
-        {_module.args = {inherit inputs;};}
+        {_module.args = {inherit inputs nvf;};}
         ./config/default.nix
       ];
     };

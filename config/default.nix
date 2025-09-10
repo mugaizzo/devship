@@ -1,10 +1,10 @@
 {
   pkgs,
   lib,
-  inputs,
+  nvf,
   ...
 }: let
-  inherit (inputs.nvf.lib.nvim.dag) entryAnywhere;
+  inherit (nvf.lib.nvim.dag) entryAnywhere;
 in {
   vim = {
     dashboard.alpha = {
@@ -88,7 +88,7 @@ in {
 
     startPlugins = [pkgs.vimPlugins.CopilotChat-nvim];
 
-    vimluaConfigRC.copilot-chat = entryAnywhere ''
+    luaConfigRC.copilot-chat = entryAnywhere ''
          require("CopilotChat").setup {
            -- Your CopilotChat configuration here
            window = {
