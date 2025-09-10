@@ -18,7 +18,7 @@
       inherit pkgs;
       modules = [
         {_module.args = {inherit inputs nvf;};}
-        ./config/default.nix
+        ./nvim/default.nix
       ];
     };
     mugaSystemTools = pkgs.symlinkJoin {

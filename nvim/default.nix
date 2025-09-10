@@ -22,7 +22,10 @@ in {
       # [[      ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣿⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀]]
       #   }";};
     };
-
+    globals = {
+      clipboard = "osc52";
+      t_RV = "";
+    };
     clipboard = {
       enable = true;
       registers = "unnamedplus";
@@ -86,29 +89,6 @@ in {
       };
     };
 
-    startPlugins = [pkgs.vimPlugins.CopilotChat-nvim];
-
-    luaConfigRC.copilot-chat = entryAnywhere ''
-         require("CopilotChat").setup {
-           -- Your CopilotChat configuration here
-           window = {
-            -- layout = "float",
-            -- border = "rounded",
-      	  title = "🤖 AI Assistant",
-      	  zindex = 100, -- Ensure window stays on top
-           },
-      headers = {
-      	user = "👤 You: ",
-      	assistant = "🤖 Copilot: ",
-      	tool = "🔧 Tool: ",
-      },
-      separator = "━━",
-      show_folds = false, -- Disable folding for cleaner look
-         }
-
-         -- Set up keymaps for CopilotChat
-         -- vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChat<CR>", { desc = "Open CopilotChat" })
-    '';
     lsp.null-ls = {
       enable = true;
 
@@ -186,8 +166,40 @@ in {
 
     additionalRuntimePaths = [
       # You can list more than one file here.
-      ./config
+      ./nvim
     ];
+
+    startPlugins = [
+      pkgs.vimPlugins.CopilotChat-nvim
+      pkgs.vimPlugins.plenary-nvim
+    ];
+
+    luaConfigRC.myconfig =
+      # entryAnywhere
+      /*
+      lua
+      */
+      ''
+        require("CopilotChat").setup {
+             -- Your CopilotChat configuration here
+             window = {
+              -- layout = "float",
+              -- border = "rounded",
+        	  title = "🤖 AI Assistant",
+        	  zindex = 100, -- Ensure window stays on top
+             },
+        headers = {
+        	user = "👤 You: ",
+        	assistant = "🤖 Copilot: ",
+        	tool = "🔧 Tool: ",
+        },
+        separator = "━━",
+        show_folds = false, -- Disable folding for cleaner look
+           }
+
+           -- Set up keymaps for CopilotChat
+           -- vim.keymap.set("n", "<leader>cc", "<cmd>CopilotChat<CR>", { desc = "Open CopilotChat" })
+      '';
 
     keymaps = [
       {
@@ -266,7 +278,7 @@ in {
       #   key = "<leader>y";
       #   mode = ["n"];
       #   noremap = true;
-      #   action = "+y";
+      #   action = "\"+y";
       #   # silent = true;
       #   desc = "yank";
       # }
@@ -274,7 +286,7 @@ in {
         key = "<leader>y";
         mode = ["x"];
         noremap = true;
-        action = "+y";
+        action = "\"+y";
         # silent = true;
         desc = "yank";
       }
@@ -282,7 +294,7 @@ in {
       #   key = "<leader>y";
       #   mode = ["s"];
       #   noremap = true;
-      #   action = "+y";
+      #   action = "\"+y";
       #   # silent = true;
       #   desc = "yank";
       # }
@@ -290,7 +302,7 @@ in {
         key = "<Space>Y";
         mode = ["n"];
         noremap = true;
-        action = "+y$";
+        action = "\"+y$";
         # silent = true;
         desc = "yank";
       }
@@ -298,7 +310,7 @@ in {
         key = "<Space>p";
         mode = ["n"];
         noremap = true;
-        action = "+p";
+        action = "\"+p";
         # silent = true;
         desc = "paste";
       }

@@ -1,4 +1,3 @@
-vim.g.clipboard = "osc52"
 
 -- change current working dir
 vim.keymap.set("n", "<leader>.", function()
