@@ -22,8 +22,9 @@
       ];
     };
   in {
-    defaultPackage.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.mkShell {
-      packages = with nixpkgs.legacyPackages.x86_64-linux; [
+    # Development shell for nix develop
+    devShells.${system}.default = pkgs.mkShell {
+      packages = with pkgs; [
         zellij
         yazi
         lazygit
@@ -32,5 +33,26 @@
         myNeovim.neovim
       ];
     };
+
+    # Bundle all tools for nix profile add
+    packages.${system}.default = pkgs.buildEnv {
+      name = "nvf-tools";
+      paths = with pkgs; [
+        zellij
+        yazi
+        lazygit
+        alejandra
+        statix
+        myNeovim.neovim
+      ];
+    };
+
+    # muga, for individual packages Expose Neovim as a standalone package
+    # packages.x86_64-linux.zellij = pkgs.zellij;
+    # packages.x86_64-linux.yazi = pkgs.yazi;
+    # packages.x86_64-linux.lazygit = pkgs.lazygit;
+    # packages.x86_64-linux.alejandra = pkgs.alejandra;
+    # packages.x86_64-linux.statis = pkgs.statix;
+    # packages.x86_64-linux.neovim = myNeovim.neovim;
   };
 }
