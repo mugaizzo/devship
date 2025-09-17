@@ -21,57 +21,16 @@
         ./nvim/default.nix
       ];
     };
-
-    # mugaSystemTools = pkgs.symlinkJoin {
-    #   name = "mugaSystemTools";
-    #   paths = with pkgs; [
-    #     zellij
-    #     yazi
-    #     lazygit
-    #     alejandra
-    #     statix
-    #     myNeovim.neovim
-    #   ];
-    # };
   in {
-
-
-    nixosConfigurations.default = pkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        {
-          environment.systemPackages = with nixpkgs.pkgs; [
-            zellij
-            yazi
-            lazygit
-            alejandra
-            statix
-            myNeovim.neovim
-          ];
-        }
+    defaultPackage.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.mkShell {
+      packages = with nixpkgs.legacyPackages.x86_64-linux; [
+        zellij
+        yazi
+        lazygit
+        alejandra
+        statix
+        myNeovim.neovim
       ];
     };
-
-
-    # # package output
-    # packages.${system}.default = mugaSystemTools;
-    #
-    # #  app for Neovim
-    # apps.${system} = {
-    #   nvim = {
-    #     type = "app";
-    #     program = "${mugaSystemTools}/bin/nvim";
-    #   };
-    #   zellij = {
-    #     type = "app";
-    #     program = "${mugaSystemTools}/bin/zellij";
-    #   };
-    # };
-    # # This is the new part for nix develop
-    # devShells.${system}.default = pkgs.mkShell {
-    #   packages = [
-    #     mugaSystemTools
-    #   ];
-    # };
   };
 }
