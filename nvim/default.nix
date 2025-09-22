@@ -69,6 +69,8 @@ in {
       enable = true;
     };
 
+    vim.binds.whichKey.enable = true;
+
     treesitter = {
       enable = true;
       highlight.enable = true;
@@ -80,6 +82,7 @@ in {
       enableTreesitter = true;
       nix = {
         enable = true;
+        lsp = true;
         format.enable = true;
         format.package = pkgs.alejandra;
         extraDiagnostics = {
