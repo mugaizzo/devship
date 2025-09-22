@@ -82,7 +82,7 @@ in {
       enableTreesitter = true;
       nix = {
         enable = true;
-        lsp = true;
+        lsp.enbale = true;
         format.enable = true;
         format.package = pkgs.alejandra;
         extraDiagnostics = {
