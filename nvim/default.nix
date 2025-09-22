@@ -69,7 +69,7 @@ in {
       enable = true;
     };
 
-    vim.binds.whichKey.enable = true;
+    binds.whichKey.enable = true;
 
     treesitter = {
       enable = true;
