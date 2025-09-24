@@ -90,6 +90,12 @@ in {
           types = ["statix"];
         };
       };
+
+      clang = {
+        enable = true;
+        cHeader = true;
+        
+      };
     };
 
     lsp.null-ls = {
@@ -155,7 +161,7 @@ in {
       enable = true;
       package = pkgs.lazygit;
       direction = "float";
-      mappings.open = "<leader>gg";
+      mappings.open = "<leader>gl";
     };
 
     notify.nvim-notify = {
@@ -362,14 +368,15 @@ in {
         action = "vim.lsp.buf.code_action";
         desc = "code action vim.lsp.buf.code_action";
       }
-      # {
-      #   key = "<leader>fp";
-      #   mode = ["n"];
-      #   action = "vim.lsp.buf.format";
-      #   desc = "format please vim.lsp.buf.format";
-      # }
       {
-        key = "<leader>c";
+        key = "<leader>fo";
+        mode = ["n"];
+        noremap = true;
+        action = "<cmd>Telescope oldfiles<cr>";
+        desc = "Telescope oldfiles";
+      }
+      {
+        key = "<leader>cc";
         mode = ["n"];
         action = "<cmd>CopilotChatToggle<cr>";
         desc = "Toggle CopilotChat";
@@ -387,7 +394,7 @@ in {
         desc = "Gitsigns toggle blame";
       }
       # {
-      #   key = "<leader>lg";
+      #   key = "<leader>gl";
       #   mode = ["n"];
       #   action = "<cmd>LazyGit<cr>";
       #   desc = "Open Lazygit";

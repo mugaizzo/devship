@@ -30,6 +30,9 @@
         lazygit
         alejandra
         statix
+        ripgrep
+        fd
+        clang-tools
         myNeovim.neovim
       ];
     };
@@ -43,6 +46,9 @@
         lazygit
         alejandra
         statix
+        ripgrep
+        fd
+        clang-tools
         myNeovim.neovim
       ];
     };
