@@ -25,6 +25,13 @@ in {
     globals = {
       clipboard = "osc52";
       t_RV = "";
+      vimtex_view_method = "zathura";
+      vimtex_syntax_enabled = 0;
+      vimtex_quickfix_ignore_filters = [
+        "organization"
+        "publisher"
+        "address"
+      ];
     };
     clipboard = {
       enable = true;
@@ -78,6 +85,8 @@ in {
       indent.enable = true;
     };
 
+    latex.vimtex.enable = true;
+
     languages = {
       enableTreesitter = true;
       nix = {
@@ -94,7 +103,6 @@ in {
       clang = {
         enable = true;
         cHeader = true;
-        
       };
     };
 
