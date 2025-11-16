@@ -68,7 +68,10 @@ in {
     };
 
     ui = {
-      noice.enable = true;
+      noice = {
+        enable = true;
+        setupOpts.presets.bottom_search = true;
+      };
       borders.plugins.which-key.enable = true;
     };
 
